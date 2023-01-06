@@ -35,7 +35,7 @@ public class AppInitializer {
         //Customer -> customer (beanID) get the class name and then
         //convert the first letter into simple letter
 
-        Customer customer = (Customer) ctx.getBean("customer");
+        Customer customer = (Customer) ctx.getBean("ijse");
         System.out.println(customer);
 
         PojoOne pojoOne = (PojoOne) ctx.getBean("pojoOne");
@@ -44,7 +44,7 @@ public class AppInitializer {
 
         //How the @Bean bean id is created.?
         //Generate bean id with bean method name
-        BasicDataSource bds = (BasicDataSource) ctx.getBean("dd");
+        BasicDataSource bds = (BasicDataSource) ctx.getBean("ac");
         System.out.println(bds);
 
 
