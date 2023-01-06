@@ -1,6 +1,7 @@
 package lk.ijse.spring;
 
 import lk.ijse.spring.config.AppConfig;
+import lk.ijse.spring.pojo.BasicDataSource;
 import lk.ijse.spring.pojo.Customer;
 import lk.ijse.spring.pojo.DBConnection;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -23,7 +24,10 @@ public class AppInitializer {
         System.out.println(db1);
         System.out.println(db2);
 
-
+        BasicDataSource bean1 = ctx.getBean(BasicDataSource.class);
+        BasicDataSource bean2 = ctx.getBean(BasicDataSource.class);
+        System.out.println(bean1);
+        System.out.println(bean2);
 
 
         ctx.close();
