@@ -1,19 +1,21 @@
 package lk.ijse.spring.pojo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Boy  {
+public class Boy {
 
     @Autowired
+    @Qualifier("girlOne")
     GoodGirl girl;
 
-    public Boy(){
+    public Boy() {
         System.out.println("Boy:Instantiated");
     }
 
-    public void chatWithGirl(){
+    public void chatWithGirl() {
 //        Girl girl = new Girl(); // don't create objects
         girl.chat();
     }
