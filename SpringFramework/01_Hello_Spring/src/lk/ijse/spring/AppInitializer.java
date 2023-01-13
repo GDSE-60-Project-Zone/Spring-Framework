@@ -10,14 +10,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class AppInitializer {
     public static void main(String[] args) {
 
-        //Hooking Processes
-        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("JVM is about to shutdown");
-            }
-        }));
-
         AnnotationConfigApplicationContext ctx= new AnnotationConfigApplicationContext();
         ctx.register(AppConfig.class);
         ctx.refresh();
@@ -58,10 +50,21 @@ public class AppInitializer {
 
 
 
+        //Hooking Processes
+//        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                System.out.println("JVM is about to shutdown");
+//                ctx.close();
+//            }
+//        }));
+
+        //this method will close the Spring Container just before JVM shut down
+        ctx.registerShutdownHook();
+        //ctx.close(); // immediately close the container
+
 
         Customer bean = ctx.getBean(Customer.class);
-
-        ctx.close();
 
 
 
