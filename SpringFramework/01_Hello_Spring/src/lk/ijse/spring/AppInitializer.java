@@ -65,6 +65,7 @@ public class AppInitializer {
 
 
         Customer bean = ctx.getBean(Customer.class);
+        System.out.println(bean);
 
 
 
