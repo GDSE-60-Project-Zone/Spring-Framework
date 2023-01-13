@@ -5,11 +5,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class A {
-    @Autowired
-    SuperB superB;
+//    @Autowired
+    SuperB superB;//property injection
 
-    public A(){
+//    @Autowired
+    public A(SuperB s){
+//        this.superB=s;//constructor injection
         System.out.println("A:instantiated");
+    }
+
+    @Autowired
+    public void setInjection(SuperB s){
+        this.superB=s;
     }
 
     public void test(){
