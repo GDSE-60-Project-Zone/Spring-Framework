@@ -50,5 +50,9 @@ public class AppInitializer {
 
 
         ctx.close();
+
+
+        Customer bean = ctx.getBean(Customer.class);
+
     }
 }
