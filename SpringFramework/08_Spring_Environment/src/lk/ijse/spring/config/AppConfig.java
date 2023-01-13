@@ -10,4 +10,5 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:private.properties")
 //@PropertySource("filepath:D:/a/d/private.properties")
 public class AppConfig {
+
 }
