@@ -1,6 +1,5 @@
 package lk.ijse.spring.config;
 
-import lk.ijse.spring.pojo.PojoThree;
 import lk.ijse.spring.pojo.PojoTwo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
