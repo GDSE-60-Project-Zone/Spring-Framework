@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class FController {
 
     //Duel Wild Card Mapping
-
-    //http://localhost:8080/mapping/five/path/1ormore/A/B
+    //0  or more inside a segment or more segments
+    //http://localhost:8080/mapping/six/path//A/B
+    //http://localhost:8080/mapping/six/path/aaaaa/A/B
+    //http://localhost:8080/mapping/six/path/aaaaa/aaaaa/aaaaa/A/B
 
     @GetMapping(path = "/path/**/A/B")
     public String testOne(){
