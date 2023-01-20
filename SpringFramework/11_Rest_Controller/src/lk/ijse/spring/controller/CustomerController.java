@@ -17,6 +17,10 @@ public class CustomerController {
 
     @GetMapping
     public String testTwo(){
+        // this is a duplicate(Ambiguous) mapping
+        //Same controller there are two methods for get method
+        //So we can't do that. 
+        // we have to learn mapping spec to resolve this problem
         return "Hello";
     }
 }
