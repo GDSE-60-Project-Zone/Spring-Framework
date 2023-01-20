@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class EController {
 
     //Wild Card Mapping
-
-    //http://localhost:8080/mapping/C1DEF
+    //Match one or more characters inside a path
+    //segment
+    //http://localhost:8080/mapping/five/path/1ormore/A/B
 
     @GetMapping(path = "/path/*/A/B")
     public String testOne(){
