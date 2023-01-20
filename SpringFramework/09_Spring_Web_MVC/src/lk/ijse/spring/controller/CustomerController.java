@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/customer")
 public class CustomerController {
 
+    public CustomerController() {
+        System.out.println("CustomerController");
+    }
+
     @GetMapping
     public void callMe(){
         System.out.println("Call Me Method Invoked By the Web Browser");
