@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/two")
 public class TwoController {
 
+    //Mapping Methods
+    //Handler methods
+    ///b/c -> path segments
     @GetMapping
     public  String defaultMethod(){
         return "Default Get Method Invoked";
