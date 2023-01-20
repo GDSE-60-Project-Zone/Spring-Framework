@@ -34,12 +34,14 @@ public class GController {
 
     //How to get values from query params with Spring Way
     @GetMapping(params = {"id","name"})
-    public String testOne(@RequestParam String id, @RequestParam String name){
-        return "Method One Invoked "+id+" "+name;
+    public String testOne(@RequestParam("id") String myID, @RequestParam String name){
+        return "Method One Invoked "+myID+" "+name;
     }
 
+//    @RequestParam = not an required annotation
+
     @GetMapping(params = {"address","salary"})
-    public String testTwo(@RequestParam String address,@RequestParam String salary){
+    public String testTwo(String address,String salary){
         return "Method Two Invoked "+address+" "+salary;
     }
 
