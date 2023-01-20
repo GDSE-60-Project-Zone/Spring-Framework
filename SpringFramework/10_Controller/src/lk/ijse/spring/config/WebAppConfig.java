@@ -13,7 +13,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan(basePackageClasses = {CustomerController.class})
 public class WebAppConfig {
 
-
     @Bean
     public ViewResolver viewResolver(){
         InternalResourceViewResolver viewResolver= new InternalResourceViewResolver();
