@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/two")
-public class TwoController {
+public class BController {
 
     //Mapping Methods
     //Handler methods

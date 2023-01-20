@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/three")
-public class ThreeController {
+public class CController {
 
     //http://localhost:8080/mapping/three/id/C002/Uvindu
     //we can access path variables with spring easily
@@ -34,6 +34,7 @@ public class ThreeController {
     public  String testOne22(@PathVariable String id,@PathVariable String name){
         return "Get Method 1 Invoked "+id+" "+name;
     }
+
 
     @GetMapping(path = "/id/{id:[C]{2}[0-9]{3}}/{name:[a-z]{5}}") //()
     public  String testOne221(@PathVariable String id,@PathVariable String name){
