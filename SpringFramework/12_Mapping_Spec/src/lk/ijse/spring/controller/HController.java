@@ -15,7 +15,9 @@ public class HController {
     //Headers (Meta Data) "Content-Type=application/json"
     //Body (Context)
 
-    //We can narrow down request using headers also
+    //We can narrow down a request using the content type
+    // of its body using headers
+    //consume = (this method expect content-type header with the request)
 
 //    @GetMapping(consumes = {"application/json"})
     @GetMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
@@ -23,7 +25,7 @@ public class HController {
         return "Method One Invoked";
     }
 
-    @GetMapping(consumes = {"text/html"})
+    @GetMapping(consumes = {MediaType.TEXT_HTML_VALUE})
     public String testTwo(){
         return "Method Two Invoked";
     }
