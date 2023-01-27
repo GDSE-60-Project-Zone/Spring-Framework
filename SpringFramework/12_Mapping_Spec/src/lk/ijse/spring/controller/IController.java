@@ -23,13 +23,23 @@ public class IController {
     //Accept is a default header and always set this header to *\* (all) which means anything will be accepted from the server as the response
 
 
+    //consume = Content-Type
+    //produce = Accept
 
+
+    //Request headers that we want to set if we want to invoke this method
+    // Content-Type.?
+    //Accept = application/json
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     public String testOne(){
         return "Method One Invoked";
     }
 
-    @GetMapping(produces = {MediaType.TEXT_HTML_VALUE})
+
+    // Request headers that we want to set if we want to invoke this method
+    // Content-Type = application/json
+    //Accept = text/html
+    @GetMapping(produces = {MediaType.TEXT_HTML_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
     public String testTwo(){
         return "Method Two Invoked";
     }
