@@ -15,7 +15,14 @@ public class IController {
     //Body (Context)
 
     //consume = Content-Type=application/json
-    //produce = ?
+    //produce = Accept
+
+    //Request Headers
+    //Content-Type = Define what is the content type of the request body
+    //Accept => what we want from the response body
+    //Accept is a default header and always set this header to *\* (all) which means anything will be accepted from the server as the response
+
+
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     public String testOne(){
@@ -26,4 +33,5 @@ public class IController {
     public String testTwo(){
         return "Method Two Invoked";
     }
+
 }
