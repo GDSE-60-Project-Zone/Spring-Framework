@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 //response format
 //state
@@ -23,9 +24,11 @@ public class CustomerController {
     @Autowired
     private CustomerRepo repo;
 
+
+
     @PostMapping
     public ResponseUtil saveCustomer(@ModelAttribute CustomerDTO dto){
-        if (dto.getId().equals("C001")){
+        if (repo.existsById(dto.getId())){
             throw new RuntimeException("Customer Already Exist. Please enter another id..!");
         }
         Customer customer = new Customer(dto.getId(),dto.getName(),dto.getAddress(),dto.getSalary());
@@ -36,29 +39,28 @@ public class CustomerController {
 
     @DeleteMapping(params = {"id"})
     public ResponseUtil deleteCustomer(@RequestParam String id){
-        if (id.equals("C001")){
+        if (!repo.existsById(id)){
             throw new RuntimeException("Wrong ID..Please enter valid id..!");
         }
+        repo.deleteById(id);
         return new ResponseUtil("OK","Successfully Deleted. :"+id ,null);
     }
 
     @PutMapping
     public ResponseUtil updateCustomer(@RequestBody CustomerDTO dto){
-        if (dto.getId().equals("C001")){
-            throw new RuntimeException("Wrong ID..No Such a Customer to Update..!");
+        if (!repo.existsById(dto.getId())){
+            throw new RuntimeException("Customer Not Exist. Please Enter Valid ID..!");
         }
+        Customer customer = new Customer(dto.getId(),dto.getName(),dto.getAddress(),dto.getSalary());
+        repo.save(customer);
+
         return new ResponseUtil("OK","Successfully Updated. :"+dto.getId() ,null);
     }
 
     @GetMapping
     public ResponseUtil getAllCustomers(){
-        ArrayList<CustomerDTO> arrayList= new ArrayList<>();
-        arrayList.add(new CustomerDTO("C001","Ushan","Galle",new BigDecimal(100)));
-        arrayList.add(new CustomerDTO("C002","Ashan","Galle",new BigDecimal(100)));
-        arrayList.add(new CustomerDTO("C003","Malshan","Panadura",new BigDecimal(100)));
-        arrayList.add(new CustomerDTO("C004","Kalshan","Kaluthara",new BigDecimal(100)));
-        arrayList.add(new CustomerDTO("C005","Rashan","Panaudra",new BigDecimal(100)));
-        return new ResponseUtil("OK","Successfully Loaded. :" ,arrayList);
+        List<Customer> all = repo.findAll();
+        return new ResponseUtil("OK","Successfully Loaded. :" ,all);
     }
 
 }
