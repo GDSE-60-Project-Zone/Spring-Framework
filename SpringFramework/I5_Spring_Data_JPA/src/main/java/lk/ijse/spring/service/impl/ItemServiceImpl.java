@@ -2,7 +2,6 @@ package lk.ijse.spring.service.impl;
 
 import lk.ijse.spring.dto.ItemDTO;
 import lk.ijse.spring.entity.Item;
-import lk.ijse.spring.repo.CustomerRepo;
 import lk.ijse.spring.repo.ItemRepo;
 import lk.ijse.spring.service.ItemService;
 import org.modelmapper.ModelMapper;
