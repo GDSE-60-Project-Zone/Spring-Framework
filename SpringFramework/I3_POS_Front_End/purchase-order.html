@@ -347,7 +347,7 @@
         let orderID = $("#txtOrderID").val();
         let customerID = $("#orderCustomerID").val();
         let orderDate = $("#txtDate").val();
-        let orderD = getItemDetails();
+        let orderD = getItemDetails(orderID);
 
         let ob={
             oid:orderID,
@@ -374,14 +374,14 @@
 
     });
 
-    function getItemDetails() {
+    function getItemDetails(orderID) {
         let rows = $("#orderTable").children().length;
         var array = [];
         for (let i = 0; i < rows; i++) {
             let itCode = $("#orderTable").children().eq(i).children(":eq(0)").text();
             let itQty = $("#orderTable").children().eq(i).children(":eq(2)").text();
             let itPrice = $("#orderTable").children().eq(i).children(":eq(3)").text();
-            array.push({code: itCode, qty: itQty, price: itPrice});
+            array.push({oid:orderID,code: itCode, qty: itQty, price: itPrice});
         }
         return array;
     }
