@@ -4,6 +4,8 @@ import lk.ijse.spring.dto.CustomerDTO;
 import lk.ijse.spring.entity.Customer;
 import lk.ijse.spring.repo.CustomerRepo;
 import lk.ijse.spring.util.ResponseUtil;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,16 +26,15 @@ public class CustomerController {
     @Autowired
     private CustomerRepo repo;
 
-
+    @Autowired
+    private ModelMapper mapper;
 
     @PostMapping
     public ResponseUtil saveCustomer(@ModelAttribute CustomerDTO dto){
         if (repo.existsById(dto.getId())){
             throw new RuntimeException("Customer Already Exist. Please enter another id..!");
         }
-        Customer customer = new Customer(dto.getId(),dto.getName(),dto.getAddress(),dto.getSalary());
-        repo.save(customer);
-
+        repo.save(mapper.map(dto, Customer.class));
         return new ResponseUtil("OK","Successfully Registered.!",null);
     }
 
@@ -51,16 +52,14 @@ public class CustomerController {
         if (!repo.existsById(dto.getId())){
             throw new RuntimeException("Customer Not Exist. Please Enter Valid ID..!");
         }
-        Customer customer = new Customer(dto.getId(),dto.getName(),dto.getAddress(),dto.getSalary());
-        repo.save(customer);
-
+        repo.save(mapper.map(dto, Customer.class));
         return new ResponseUtil("OK","Successfully Updated. :"+dto.getId() ,null);
     }
 
     @GetMapping
     public ResponseUtil getAllCustomers(){
-        List<Customer> all = repo.findAll();
-        return new ResponseUtil("OK","Successfully Loaded. :" ,all);
+        ArrayList<CustomerDTO> allList=mapper.map(repo.findAll(),new TypeToken<ArrayList<CustomerDTO>>(){}.getType());
+        return new ResponseUtil("OK","Successfully Loaded. :" ,allList);
     }
 
 }
