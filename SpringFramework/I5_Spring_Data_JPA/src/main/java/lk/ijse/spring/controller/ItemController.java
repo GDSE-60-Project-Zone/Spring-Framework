@@ -3,6 +3,7 @@ package lk.ijse.spring.controller;
 import lk.ijse.spring.dto.ItemDTO;
 import lk.ijse.spring.entity.Item;
 import lk.ijse.spring.repo.ItemRepo;
+import lk.ijse.spring.service.ItemService;
 import lk.ijse.spring.util.ResponseUtil;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -19,42 +20,31 @@ import java.util.List;
 public class ItemController {
 
     @Autowired
-    private ItemRepo repo;
+    private ItemService service;
 
-    @Autowired
-    private ModelMapper mapper;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public ResponseUtil saveItem(@ModelAttribute ItemDTO dto){
-        if (repo.existsById(dto.getCode())){
-            throw new RuntimeException(dto.getCode()+ " : Item already registered.!");
-        }
-        repo.save(mapper.map(dto, Item.class));
+        service.saveItem(dto);
         return new ResponseUtil("OK","Successfully Registered.!",null);
     }
 
     @DeleteMapping(params = {"code"})
     public ResponseUtil deleteItem(@RequestParam String code){
-        if (!repo.existsById(code)){
-            throw new RuntimeException(code+ " : Item Not Exists to Delete.!");
-        }
+        service.deleteItem(code);
         return new ResponseUtil("OK","Successfully Deleted. :"+code  ,null);
     }
 
     @PutMapping
     public ResponseUtil updateItem(@RequestBody ItemDTO dto){
-        if (!repo.existsById(dto.getCode())){
-            throw new RuntimeException(dto.getCode()+ " : Item Not Exist for Update.!");
-        }
-        repo.save(mapper.map(dto, Item.class));
+        service.updateItem(dto);
         return new ResponseUtil("OK","Successfully Updated. :"+dto.getCode() ,null);
     }
 
     @GetMapping
     public ResponseUtil getAllItems(){
-        ArrayList<ItemDTO> list=mapper.map(repo.findAll(),new TypeToken< ArrayList<ItemDTO>>(){}.getType());
-        return new ResponseUtil("OK","Successfully Loaded. :" ,list);
+        return new ResponseUtil("OK","Successfully Loaded. :" ,service.getAllItems());
     }
 
 }
