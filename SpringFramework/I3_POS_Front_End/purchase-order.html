@@ -379,9 +379,9 @@
         var array = [];
         for (let i = 0; i < rows; i++) {
             let itCode = $("#orderTable").children().eq(i).children(":eq(0)").text();
-            let itQty = $("#orderTable").children().eq(i).children(":eq(2)").text();
-            let itPrice = $("#orderTable").children().eq(i).children(":eq(3)").text();
-            array.push({oid:orderID,code: itCode, qty: itQty, price: itPrice});
+            let itPrice= $("#orderTable").children().eq(i).children(":eq(2)").text();
+            let itQty= $("#orderTable").children().eq(i).children(":eq(3)").text();
+            array.push({oid:orderID,itemCode: itCode, qty: itQty, unitPrice: itPrice});
         }
         return array;
     }
