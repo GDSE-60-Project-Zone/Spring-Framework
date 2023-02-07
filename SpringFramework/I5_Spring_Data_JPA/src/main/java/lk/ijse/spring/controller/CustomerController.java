@@ -6,10 +6,6 @@ import lk.ijse.spring.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-//response format
-//state
-//message
-//data
 
 @RestController
 @CrossOrigin
@@ -39,6 +35,11 @@ public class CustomerController {
     @GetMapping
     public ResponseUtil getAllCustomers(){
         return new ResponseUtil("OK","Successfully Loaded. :" ,service.getAllCustomers());
+    }
+
+    @GetMapping(path = "/{name}")
+    public ResponseUtil searchCustomerByName(@PathVariable String name){
+        return new ResponseUtil("OK","Successfully Loaded. :" ,service.searchCustomerWithName(name));
     }
 
 }

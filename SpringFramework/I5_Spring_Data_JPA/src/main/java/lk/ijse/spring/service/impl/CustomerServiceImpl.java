@@ -49,4 +49,9 @@ public class CustomerServiceImpl implements CustomerService {
     public ArrayList<CustomerDTO> getAllCustomers() {
         return mapper.map(repo.findAll(),new TypeToken<ArrayList<CustomerDTO>>(){}.getType());
     }
+
+    @Override
+    public CustomerDTO searchCustomerWithName(String name) {
+        return mapper.map(repo.findCustomerByName(name),CustomerDTO.class);
+    }
 }
