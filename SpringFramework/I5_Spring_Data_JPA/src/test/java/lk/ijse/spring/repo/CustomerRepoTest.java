@@ -92,5 +92,15 @@ class CustomerRepoTest {
 
     }
 
+    @Test
+    void queryTest1() {
+//        Customer customer = repo.methodTwo();
+//        System.out.println(customer.toString());
+
+        Customer customer = repo.methodThree("C002","Kushan Hansaka");
+        System.out.println(customer.toString());
+
+    }
+
 
 }

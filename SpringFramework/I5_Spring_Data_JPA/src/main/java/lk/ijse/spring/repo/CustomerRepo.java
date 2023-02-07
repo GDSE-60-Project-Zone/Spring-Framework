@@ -31,6 +31,22 @@ public interface CustomerRepo extends JpaRepository<Customer,String> {
     @Query(value = "select * from Customer",nativeQuery = true)
     List<Customer> methodOne();
 
+    @Query(value = "select * from Customer where id='C001'",nativeQuery = true)
+    Customer methodTwo();
+
+    //Positional Params
+    //Named Prams
+
+
+    //Positional Params
+    @Query(value = "select * from Customer where id=?1 and name=?2",nativeQuery = true)
+    Customer methodThree(String id,String name);
+    //1 = id param value
+    //2 = name param value
+
+
+
+
 
 
 }
