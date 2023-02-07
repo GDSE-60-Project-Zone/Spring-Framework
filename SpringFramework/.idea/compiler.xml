@@ -9,7 +9,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="I4_Spring_With_Maven" />
         <module name="I5_Spring_Data_JPA" />
+        <module name="I6_Spring_Boot" />
       </profile>
     </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="I6_Spring_Boot" options="-parameters" />
+    </option>
   </component>
 </project>
