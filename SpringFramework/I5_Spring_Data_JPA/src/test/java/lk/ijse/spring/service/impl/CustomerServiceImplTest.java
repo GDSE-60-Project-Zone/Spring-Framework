@@ -13,6 +13,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import javax.transaction.Transactional;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,7 +34,6 @@ class CustomerServiceImplTest {
            service.saveCustomer(customerDTO);
        });
 
-
         //set invalid data if this throws error
         CustomerDTO customerDTO2 = new CustomerDTO("C001","Ramal Wasuka","Galle",new BigDecimal(1000));
         assertThrows(RuntimeException.class,()->{
@@ -43,16 +43,36 @@ class CustomerServiceImplTest {
 
     @Test
     void deleteCustomer() {
+        //in-valid
+        assertThrows(RuntimeException.class,()->{
+            service.deleteCustomer("C0010");
+        });
+
+        //valid
+        assertDoesNotThrow(()->{
+            service.deleteCustomer("C001");
+        });
+
+
     }
 
     @Test
     void updateCustomer() {
+        //in-valid
+        assertThrows(RuntimeException.class,()->{
+            service.updateCustomer(new CustomerDTO("C700","Kasun","Galle",new BigDecimal(100)));
+        });
+
+        //valid
+        assertDoesNotThrow(()->{
+            service.updateCustomer(new CustomerDTO("C001","Kasun","Galle",new BigDecimal(100)));
+        });
     }
 
     @Test
     void getAllCustomers() {
-        assertTrue(true);
-        assertFalse(false);
+        ArrayList<CustomerDTO> allCustomers = service.getAllCustomers();
+        assertTrue(allCustomers.size()>0);
     }
 
     @Test
