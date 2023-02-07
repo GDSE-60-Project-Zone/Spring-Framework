@@ -9,6 +9,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import javax.transaction.Transactional;
+import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,10 +19,19 @@ import static org.junit.jupiter.api.Assertions.*;
 @WebAppConfiguration//creat the testing context
 @ContextConfiguration(classes = {WebRootConfig.class}) // add configuration for that context
 @ExtendWith(SpringExtension.class) // integrate junit with Spring
+@Transactional
 class CustomerRepoTest {
 
     @Autowired
     CustomerRepo repo;
+
+    @Test
+    void addCustomers(){
+        Customer c1 = new Customer("C011", "Wimal", "Galle", new BigDecimal(100000));
+        Customer c2 = new Customer("C012", "Amal", "Panadura", new BigDecimal(200000));
+        repo.save(c1);
+        repo.save(c2);
+    }
 
     @Test
     void findByName() {
@@ -51,6 +62,20 @@ class CustomerRepoTest {
         System.out.println(c4.toString());
         System.out.println(c5.toString());
         System.out.println(c6.toString());
+    }
+
+    @Test
+    void testAllMethods2() {
+        Long count = repo.countCustomerByName("Ashan Fernando");
+        System.out.println(count);
+
+        Boolean available = repo.existsCustomerByName("Ashan Fernando");
+        System.out.println(available);
+
+        repo.deleteCustomerByName("Wasuka");
+        repo.removeCustomerByName("Ramal Wasuka");
 
     }
+
+
 }
