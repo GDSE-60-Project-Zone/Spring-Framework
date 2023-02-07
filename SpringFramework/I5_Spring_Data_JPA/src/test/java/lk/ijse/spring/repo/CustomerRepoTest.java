@@ -97,7 +97,10 @@ class CustomerRepoTest {
 //        Customer customer = repo.methodTwo();
 //        System.out.println(customer.toString());
 
-        Customer customer = repo.methodThree("C002","Kushan Hansaka");
+//        Customer customer = repo.methodThree("C002","Kushan Hansaka");
+//        System.out.println(customer.toString());
+
+        Customer customer = repo.methodFour("C002","Kushan Hansaka");
         System.out.println(customer.toString());
 
     }

@@ -3,6 +3,7 @@ package lk.ijse.spring.repo;
 import lk.ijse.spring.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -45,6 +46,11 @@ public interface CustomerRepo extends JpaRepository<Customer,String> {
     //2 = name param value
 
 
+    //Named Params
+    @Query(value = "select * from Customer where id=:a and name=:b",nativeQuery = true)
+    Customer methodFour(@Param("a") String id,@Param("b") String name);
+    //a = id param value
+    //b = name param value
 
 
 
