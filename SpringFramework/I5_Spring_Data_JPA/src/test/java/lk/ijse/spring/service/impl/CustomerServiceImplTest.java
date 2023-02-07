@@ -30,9 +30,9 @@ class CustomerServiceImplTest {
     void saveCustomer() {
         //valid data test ok
         CustomerDTO customerDTO = new CustomerDTO("C011","Ramal Wasuka","Galle",new BigDecimal(1000));
-       assertDoesNotThrow(()->{
-           service.saveCustomer(customerDTO);
-       });
+        assertDoesNotThrow(() -> {
+            service.saveCustomer(customerDTO);
+        });
 
         //set invalid data if this throws error
         CustomerDTO customerDTO2 = new CustomerDTO("C001","Ramal Wasuka","Galle",new BigDecimal(1000));
