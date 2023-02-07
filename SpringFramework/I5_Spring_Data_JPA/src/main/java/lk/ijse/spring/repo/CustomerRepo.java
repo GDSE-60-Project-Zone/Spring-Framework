@@ -38,7 +38,6 @@ public interface CustomerRepo extends JpaRepository<Customer,String> {
     //Positional Params
     //Named Prams
 
-
     //Positional Params
     @Query(value = "select * from Customer where id=?1 and name=?2",nativeQuery = true)
     Customer methodThree(String id,String name);
@@ -53,6 +52,14 @@ public interface CustomerRepo extends JpaRepository<Customer,String> {
     //b = name param value
 
 
+    //JPQL
+    @Query(value = "select u from Customer u")
+    List<Customer> getCustomerWithJPQL();
+
+
+    //HQL
+    @Query(value = "from Customer")
+    List<Customer> getCustomerWithHQL();
 
 
 }

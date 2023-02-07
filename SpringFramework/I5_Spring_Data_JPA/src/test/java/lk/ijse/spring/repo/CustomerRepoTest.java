@@ -94,15 +94,29 @@ class CustomerRepoTest {
 
     @Test
     void queryTest1() {
-//        Customer customer = repo.methodTwo();
-//        System.out.println(customer.toString());
-
-//        Customer customer = repo.methodThree("C002","Kushan Hansaka");
-//        System.out.println(customer.toString());
-
-        Customer customer = repo.methodFour("C002","Kushan Hansaka");
+        Customer customer = repo.methodTwo();
         System.out.println(customer.toString());
 
+        Customer customer1 = repo.methodThree("C002","Kushan Hansaka");
+        System.out.println(customer1.toString());
+
+        Customer customer2 = repo.methodFour("C002","Kushan Hansaka");
+        System.out.println(customer2.toString());
+
+    }
+
+    @Test
+    void queryTest2() {
+        List<Customer> jpql = repo.getCustomerWithJPQL();
+        for (Customer c : jpql) {
+            System.out.println(c.toString());
+        }
+        System.out.println("=============");
+
+        List<Customer> hql = repo.getCustomerWithHQL();
+        for (Customer c1 : hql) {
+            System.out.println(c1.toString());
+        }
     }
 
 
